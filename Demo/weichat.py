@@ -4,7 +4,7 @@ SPECIAL THANK
 OPEN SOURCE FROM littlecodersh/ItChat
 GITHUB https://github.com/littlecodersh/ItChat
 
-WEIWEI CONTRIBUITER
+WEICHAT CONTRIBUITER
 LAOHAN
 '''
 import itchat, time
