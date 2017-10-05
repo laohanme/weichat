@@ -20,7 +20,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='gb18030')
 messageText = ['hello','hi','你好']
 
 
-# private message auto reply
+# auto reply private message 
 @itchat.msg_register([TEXT, MAP, CARD, NOTE, SHARING])
 def text_reply(msg):
     # msg.user.send('微信自动回复: '+ '在工作[奸笑] 会迟回复')
@@ -34,10 +34,28 @@ def text_reply(msg):
 
     # return message to the sender
     if reveicemsg in messageText:
-        itchat.send('助理回复: ' + '你好很高兴认识你[偷笑]', msg['FromUserName'])
+        itchat.send('助理回复: ' + '你好很高兴认识你[偷笑]', msg.fromUserName)
     else:
-        itchat.send('助理回复: ' + '\n他在工作[皱眉]他会迟些回复你的 \n今天是中秋节 祝福你中秋节快乐[玫瑰]', msg['FromUserName'])
+        itchat.send('助理回复: ' + '他不在[奸笑]', msg.fromUserName)
 
-    
+
+
+# auto reply group message 
+@itchat.msg_register(TEXT, isGroupChat=True)
+def text_reply(msg):
+    if msg.isAt:
+        msg.user.send(u'@%s\u2005I received: %s' % (
+            msg.actualNickName, msg.text + "Hello"))
+
+
+
+# auto accept new friend
+@itchat.msg_register(FRIENDS)
+def add_friend(msg):
+    msg.user.verify()
+    msg.user.send('Nice to meet you!')
+
+
+
 itchat.auto_login(True)
 itchat.run()
