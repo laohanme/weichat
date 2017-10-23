@@ -40,7 +40,7 @@ def text_reply(msg):
 
 
 
-# auto reply group message 
+# auto reply group message
 @itchat.msg_register(TEXT, isGroupChat=True)
 def text_reply(msg):
     if msg.isAt:
