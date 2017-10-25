@@ -57,5 +57,5 @@ def add_friend(msg):
 
 
 
-itchat.auto_login(True)
+itchat.auto_login(True,enableCmdQR=-1)
 itchat.run()
